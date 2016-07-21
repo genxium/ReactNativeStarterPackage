@@ -1,0 +1,6 @@
+#!/bin/bash
+
+basedir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+$basedir/stop_node_api_daemon
+$basedir/start_node_api_daemon

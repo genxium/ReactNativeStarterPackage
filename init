@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# If using Ubuntu please install node components by https://github.com/genxium/Ubuntu14InitScripts/tree/master/backend/node 
+sudo npm install -g webpack
+sudo npm install -g react-native-cli
