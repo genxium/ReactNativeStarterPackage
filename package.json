@@ -21,6 +21,7 @@
     "babel-preset-react": "*",
     "babel-preset-react-native": "*",
     "babel-preset-stage-0": "*",
+    "flow-bin": "^0.29.0",
     "webpack": "*",
     "webpack-dev-server": "*"
   }

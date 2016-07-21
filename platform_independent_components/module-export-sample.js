@@ -25,7 +25,12 @@
  var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
  class SampleAppMovies extends Component {
-   constructor(props) {
+   state: {
+     dataSource: ListView.DataSource,
+     loaded: boolean
+   };
+
+   constructor(props: Object) {
      super(props);
      this.state = {
        dataSource: new ListView.DataSource({
@@ -74,7 +79,7 @@
      );
    }
 
-   renderMovie(movie) {
+   renderMovie(movie: Object) {
      return (
        <View style={styles.container}>
          <Image

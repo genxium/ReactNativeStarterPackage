@@ -33,6 +33,8 @@ project.xcworkspace
 android/local.properties
 android/build
 android/build/*
+android/.gradle
+android/.gradle/*
 
 # iOS
 #
