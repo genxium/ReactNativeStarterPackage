@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# This script aims at creating a structured project only at $USER's home directory at the moment. The created project will be owned by current OS user.
+
+if [ $# -ne 1 ]; then 
+	echo "Usage: $0 <ProjectNameInCamelCase>"
+	exit 1
+fi
+
+# If using Ubuntu please install node components by https://github.com/genxium/Ubuntu14InitScripts/tree/master/backend/node 
+# If using OS X please download the v6+ installer from the official site https://nodejs.org/en/
+sudo npm install -g webpack
+sudo npm install -g react-native-cli 
+
+basedir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+function create_proj() {
+	target_parent_dir=$1
+	project_name=$2
+	cd $target_parent_dir
+		
+	react-native init $project_name --verbose
+	target_dir=$target_parent_dir/$project_name
+
+	# create .gitignore
+	cat $basedir/.gitignore.template > $target_dir/.gitignore 
+
+	# create package.json
+	cat $basedir/package.json.template > $target_dir/package.json 
+	
+	# create react-native babel config
+	cat $basedir/.babelrc.template > $target_dir/.babelrc
+
+	# create platform independent entry and `movies` component sample
+	platform_indpendent_components_dir=$target_dir/platform_independent_components
+	mkdir -p $platform_indpendent_components_dir
+	cat $basedir/platform_independent_components.template/index.js.template > $platform_indpendent_components_dir/index.js  
+	cat $basedir/platform_independent_components.template/package.json.template > $platform_indpendent_components_dir/package.json  
+	cat $basedir/platform_independent_components.template/module-export-sample.js.template > $platform_indpendent_components_dir/module-export-sample.js  
+
+	# create platform specific entries 
+	# ios 
+	cat $basedir/index.ios_android.js.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/index.ios.js
+
+	# android
+	cat $basedir/index.ios_android.js.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/index.android.js
+
+	# web
+	cat $basedir/index.web.js.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/index.web.js
+	cat $basedir/webpack.config.js.template > $target_dir/webpack.config.js
+	cat $basedir/api_daemon.js.template > $target_dir/api_daemon.js
+	mkdir -p $target_dir/web/bin
+	cat $basedir/web.template/index.html.template > $target_dir/web/index.html 
+	
+	# uncomment the following lines before running `npm install` if you're in mainland China and not having access to a good proxy/relay service 
+	# npm config set registry https://registry.npm.taobao.org
+	# npm config set strict-ssl false
+}
+
+create_proj "$HOME" "$1"

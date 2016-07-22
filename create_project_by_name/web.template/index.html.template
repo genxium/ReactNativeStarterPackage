@@ -1,0 +1,7 @@
+<html>
+	<body>
+		<div id="react-root">
+		</div>
+	</body>
+	<script src="/bin/app.bundle.js"></script>
+</html>
