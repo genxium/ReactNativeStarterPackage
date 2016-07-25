@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "express": "*",
-    "platform-independent-components": "file:./platform_independent_components",
+    "express-ws": "*",
     "react": "*",
     "react-native": "*",
     "react-native-web": "*",

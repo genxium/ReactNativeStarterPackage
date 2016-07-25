@@ -1,8 +1,6 @@
 /**
- * @flow
- */
- 
-import React, { Component } from 'react';
+* @flow
+*/
 
 import {
   AppRegistry
@@ -11,7 +9,6 @@ import {
 import {
   SampleAppMovies,
 } from 'platform-independent-components'
-
 
 class ReactNativeStarterPackage extends SampleAppMovies {
 

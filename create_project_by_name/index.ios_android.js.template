@@ -1,17 +1,14 @@
 /**
  * @flow
  */
- 
-import React, { Component } from 'react';
 
 import {
   AppRegistry
-} from 'react-native';
+} from 'react-native'
 
 import {
   SampleAppMovies,
-} from 'platform-independent-components'
-
+} from './platform_independent_components'
 
 class ToBeReplacedProjName extends SampleAppMovies {
 

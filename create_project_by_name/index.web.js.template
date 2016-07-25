@@ -5,16 +5,16 @@
 import 'whatwg-fetch' // for browser compatibility
 
 import {
-  SampleAppMovies,
-} from 'platform-independent-components'
-
-import {
   AppRegistry
 } from 'react-native'
 
+import {
+  SampleAppMovies,
+} from './platform_independent_components'
+
 // Components
 class ToBeReplacedProjName extends SampleAppMovies {
-  // write some web specific codes here
+
 }
 
 // App registration and rendering

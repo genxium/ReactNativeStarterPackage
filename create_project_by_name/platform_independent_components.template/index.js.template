@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./module-export-sample');
+module.exports = require('./module_export_sample');

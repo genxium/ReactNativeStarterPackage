@@ -1,14 +1,21 @@
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
+let express = require('express');
+let app = express();
+var expressWs = require('express-ws')(app);
 
-// mount static resource points, reference http://expressjs.com/en/api.html 
+// mount static resource points, reference http://expressjs.com/en/api.html
 app.use('/bin', express.static('web/bin'));
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/web/index.html');
 });
 
-http.listen(3000, function() {
-		console.log('listening on *:3000');
+app.ws('/echo', function(ws, req) {
+  console.log('New connection from ' + req.connection.remoteAddress); // or `ws._socket.remoteAddress`
+  ws.on('message', function(msg) {
+    ws.send(msg);
+  });
+});
+
+app.listen(3000, function() {
+  console.log('listening');
 });
