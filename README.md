@@ -1,3 +1,13 @@
+This tool doesn't work on Windows (yet). 
+
+###Project Creation###
+To create a new project named `MyProject`,
+```bash
+shell@proj-root/create_project_by_name> init MyProject 
+```
+
+After the downloading is finished, go to the `$HOME/MyProject` directory and run `npm install` to install dependencies. 
+
 ###iOS###
 ```bash
 shell@proj-root> react-native run-ios
@@ -25,7 +35,7 @@ If difficulty of debugging by real Android device is encountered, please refer t
 shell@proj-root> webpack
 shell@proj-root> ./start_api_daemon
 ```
-Visit port 3000 if successfully started
+Visit port 9090 if successfully started
 
 ###Reminders###
 In the `package.json` file, `react-native` version is set to * to keep using up-to-date features and fixes. Remember to run 
@@ -41,6 +51,15 @@ shell@proj-root> ./node_modules/react-native/packager/packager.sh start --resetC
 to start the packager with cache cleaned if any weird errors show up and you're sure that it's a cache relevant problem.
 
 ###Websocket (or WebSocket, but I prefer Websocket for typing convenience)###
-The [express-ws](https://github.com/HenningM/express-ws) is currently chosen as websocket server library for this repository. The client sides are using [websocket APIs wrapped by React-Native](https://facebook.github.io/react-native/docs/network.html). If you want to use other, possibly more popular libraries such as [socket.io](http://socket.io/), please be careful about the potential compatibility problems. Some efforts into using [socket.io](http://socket.io/) have been put without success and I appreciate any help or comment for better websocket utilities integration.   
+The [express-ws](https://github.com/HenningM/express-ws) is currently chosen as websocket server library for this repository. The client sides are using [websocket APIs wrapped by React-Native](https://facebook.github.io/react-native/docs/network.html).
 
-When testing by a local Android emulator, there'll be websocket errors complaining `Failed to connect to localhost/127.0.0.1:3000` and I haven't found a way to resolve it. Please try to pick up a real Android device for testing websocket features on Android OS and again any help or comment for this issue is appreciated.  
+The popular library [socket.io](http://socket.io/) is an option as well.   
+
+When testing by Android, please start the application by script `run_android_with_localhost_proxy`.  
+
+###Navigating/Routing###
+The [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) is yet supported by [react-native-web](https://github.com/necolas/react-native-web/issues/29). 
+
+One option of navigating/routing integration is to use [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) for iOS/Android and the popular [react-router](https://github.com/reactjs/react-router/) for web respectively. 
+
+It's also possible to use [react-router-native](https://github.com/jmurzy/react-router-native) instead of [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) for iOS/Android app navigation.

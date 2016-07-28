@@ -16,6 +16,6 @@ app.ws('/echo', function(ws, req) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(9090, function() {
   console.log('listening');
 });

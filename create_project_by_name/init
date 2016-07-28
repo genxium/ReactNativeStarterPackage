@@ -28,6 +28,10 @@ function create_proj() {
 	# create package.json
 	cat $basedir/package.json.template > $target_dir/package.json
 
+	# create android localhost proxy script
+	cat $basedir/run_android_with_localhost_proxying.template > $target_dir/run_android_with_localhost_proxying
+	chmod 750 $target_dir/run_android_with_localhost_proxying
+
 	# create react-native babel config
 	cat $basedir/.babelrc.template > $target_dir/.babelrc
 

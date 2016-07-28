@@ -32,7 +32,7 @@ class SampleAppMovies extends Component {
 
   wsSetup() {
     let host = "localhost"; 
-    let port = "3000";
+    let port = "9090";
     let path = "/echo";
     let ws = new WebSocket("ws://" + host + ":" + port + path); // `wss` associated sample codes to be provided
     ws.onopen = () => {
@@ -67,7 +67,6 @@ class SampleAppMovies extends Component {
   }
 
   componentDidMount() {
-    // should be implemetned by React.Component subclasses
     this.fetchData();
     this.wsSetup();
   }
