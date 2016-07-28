@@ -35,7 +35,7 @@ If difficulty of debugging by real Android device is encountered, please refer t
 shell@proj-root> webpack
 shell@proj-root> ./start_api_daemon
 ```
-Visit port 9090 if successfully started
+Visit port 9090 if successfully started.
 
 ###Reminders###
 In the `package.json` file, `react-native` version is set to * to keep using up-to-date features and fixes. Remember to run 
@@ -55,7 +55,7 @@ The [express-ws](https://github.com/HenningM/express-ws) is currently chosen as 
 
 The popular library [socket.io](http://socket.io/) is an option as well.   
 
-When testing by Android, please start the application by script `run_android_with_localhost_proxy`.  
+When testing by Android, please start the application by script [run_android_with_localhost_proxying](https://github.com/genxium/ReactNativeStarterPackage/blob/master/run_android_with_localhost_proxying).  
 
 ###Navigating/Routing###
 The [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) is yet supported by [react-native-web](https://github.com/necolas/react-native-web/issues/29). 
