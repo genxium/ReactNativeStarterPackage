@@ -1,0 +1,19 @@
+{
+  "name": "ToBeReplacedProjName-web",
+  "private": true,
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-native-web": "^0.0.40",
+    "whatwg-fetch": "*"
+  },
+  "devDependencies": {
+    "webpack": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-plugin-add-module-exports": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-react-native": "*",
+    "babel-preset-stage-0": "*"
+  }
+}

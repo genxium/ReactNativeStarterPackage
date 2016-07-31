@@ -26,7 +26,7 @@ function create_proj() {
 	cat $basedir/.gitignore.template > $target_dir/.gitignore
 
 	# create package.json
-	cat $basedir/package.json.template > $target_dir/package.json
+	cat $basedir/package.json.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/package.json
 
 	# create android localhost proxy script
 	cat $basedir/run_android_with_localhost_proxying.template > $target_dir/run_android_with_localhost_proxying
@@ -54,6 +54,7 @@ function create_proj() {
 	cat $basedir/webpack.config.js.template > $target_dir/webpack.config.js
 	cat $basedir/api_daemon.js.template > $target_dir/api_daemon.js
 	mkdir -p $target_dir/web/bin
+	cat $basedir/web.template/package.json.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/web/package.json
 	cat $basedir/web.template/index.html.template > $target_dir/web/index.html
 
 	# uncomment the following lines before running `npm install` if you're in mainland China and not having access to a good proxy/relay service

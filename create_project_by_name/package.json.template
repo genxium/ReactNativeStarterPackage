@@ -1,27 +1,12 @@
 {
-  "name": "ReactNativeStarterPackage",
-  "version": "0.0.1",
-  "private": true,
+  "name": "ToBeReplacedProjName",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
     "express": "*",
     "express-ws": "*",
-    "react": "*",
-    "react-native": "*",
-    "react-native-web": "*",
-    "whatwg-fetch": "*"
-  },
-  "devDependencies": {
-    "babel-core": "*",
-    "babel-loader": "*",
-    "babel-plugin-add-module-exports": "*",
-    "babel-preset-es2015": "*",
-    "babel-preset-react": "*",
-    "babel-preset-react-native": "*",
-    "babel-preset-stage-0": "*",
-    "webpack": "*",
-    "webpack-dev-server": "*"
+    "react": "~15.2.0",
+    "react-native": "0.30.0"
   }
 }
