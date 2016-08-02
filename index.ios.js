@@ -8,7 +8,7 @@ import {
 
 import {
   SampleAppMovies,
-} from 'platform-independent-components'
+} from './platform_independent_components'
 
 class ReactNativeStarterPackage extends SampleAppMovies {
 
