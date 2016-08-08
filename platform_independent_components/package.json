@@ -1,6 +1,5 @@
 {
   "name": "platform-independent-components",
-  "version": "0.0.1",
   "description": "This is a collection of project specific utility modules.",
   "main": "index.js",
   "repository": "https://github.com/genxium/ReactNativeStarterPackage/tree/master/platform_independent_components",

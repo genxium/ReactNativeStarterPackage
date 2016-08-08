@@ -1,16 +1,16 @@
 /**
- * @flow
- */
+* @flow
+*/
 
 import {
   AppRegistry
-} from 'react-native'
+} from 'react-native';
 
 import {
-  SampleAppMovies,
-} from './platform_independent_components'
+  NativeNavigator,
+} from './NativeNavigator'
 
-class ToBeReplacedProjName extends SampleAppMovies {
+class ToBeReplacedProjName extends NativeNavigator {
 
 }
 

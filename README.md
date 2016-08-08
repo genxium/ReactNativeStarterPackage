@@ -65,6 +65,6 @@ The popular library [socket.io](http://socket.io/) is an option as well.
 ###Navigating/Routing###
 The [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) is not yet supported by [react-native-web](https://github.com/necolas/react-native-web/issues/29).
 
-One option of navigating/routing integration is to use [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) for iOS/Android and the popular [react-router](https://github.com/reactjs/react-router/) for web respectively.
+The navigating/routing integration used here is [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) for iOS/Android and [react-router](https://github.com/reactjs/react-router/) for web.
 
-It's also possible to use [react-router-native](https://github.com/jmurzy/react-router-native) instead of [react-native Navigator](https://facebook.github.io/react-native/docs/navigator.html) for iOS/Android app navigation.
+It's also possible to use [react-router-native](https://github.com/jmurzy/react-router-native) alone instead.

@@ -40,9 +40,13 @@ function create_proj() {
 	mkdir -p $platform_indpendent_components_dir
 	cat $basedir/platform_independent_components.template/index.js.template > $platform_indpendent_components_dir/index.js
 	cat $basedir/platform_independent_components.template/package.json.template > $platform_indpendent_components_dir/package.json
-	cat $basedir/platform_independent_components.template/module_export_sample.js.template > $platform_indpendent_components_dir/module_export_sample.js
+	cat $basedir/platform_independent_components.template/constants.js.template > $platform_indpendent_components_dir/constants.js
+	cat $basedir/platform_independent_components.template/SampleAppMovies.js.template > $platform_indpendent_components_dir/SampleAppMovies.js
+	cat $basedir/platform_independent_components.template/SampleMovieDetail.js.template > $platform_indpendent_components_dir/SampleMovieDetail.js
 
 	# create platform specific entries
+	cat $basedir/NativeNavigator.js.template > $target_dir/NativeNavigator.js
+
 	# ios
 	cat $basedir/index.ios_android.js.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/index.ios.js
 
@@ -53,6 +57,7 @@ function create_proj() {
 	cat $basedir/index.web.js.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/index.web.js
 	cat $basedir/webpack.config.js.template > $target_dir/webpack.config.js
 	cat $basedir/api_daemon.js.template > $target_dir/api_daemon.js
+
 	mkdir -p $target_dir/web/bin
 	cat $basedir/web.template/package.json.template | sed s/ToBeReplacedProjName/$project_name/g > $target_dir/web/package.json
 	cat $basedir/web.template/index.html.template > $target_dir/web/index.html

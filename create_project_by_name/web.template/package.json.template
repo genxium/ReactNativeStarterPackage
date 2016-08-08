@@ -4,6 +4,7 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-native-web": "^0.0.40",
+    "react-router": "*",
     "whatwg-fetch": "*"
   },
   "devDependencies": {

@@ -1,3 +1,4 @@
 'use strict';
 
-module.exports = require('./module_export_sample');
+module.exports.SampleAppMovies = require('./SampleAppMovies').SampleAppMovies;
+module.exports.SampleMovieDetail = require('./SampleMovieDetail').SampleMovieDetail;

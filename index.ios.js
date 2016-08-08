@@ -7,10 +7,10 @@ import {
 } from 'react-native';
 
 import {
-  SampleAppMovies,
-} from './platform_independent_components'
+  NativeNavigator,
+} from './NativeNavigator'
 
-class ReactNativeStarterPackage extends SampleAppMovies {
+class ReactNativeStarterPackage extends NativeNavigator {
 
 }
 

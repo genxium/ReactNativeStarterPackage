@@ -16,22 +16,23 @@ import React, {
 
 import {
  Image,
- ListView,
  StyleSheet,
  Text,
  View
 } from 'react-native';
 
+import constants from './constants';
+
 var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
 class SampleAppMovies extends Component {
   state: {
-   dataSource: ListView.DataSource,
+   dataSource: any,
    loaded: boolean
   };
 
   wsSetup() {
-    let host = "localhost"; 
+    let host = "localhost";
     let port = "9090";
     let path = "/echo";
     let ws = new WebSocket("ws://" + host + ":" + port + path); // `wss` associated sample codes to be provided
@@ -59,9 +60,7 @@ class SampleAppMovies extends Component {
   constructor(props: Object) {
    super(props);
    this.state = {
-     dataSource: new ListView.DataSource({
-       rowHasChanged: (row1, row2) => row1 !== row2,
-     }),
+     dataSource: this.props.ListViewDataSourceInitValue,
      loaded: false,
    };
   }
@@ -88,13 +87,32 @@ class SampleAppMovies extends Component {
      return this.renderLoadingView();
     }
 
-    return (
-     <ListView
-       dataSource={this.state.dataSource}
-       renderRow={this.renderMovie}
-       style={styles.listView}
+    let renderRow = function(rowData, sectionID, rowID, highlightRow) {
+     const {navigator, HyperLinkClass, HyperLinkPropsFilter, ...other} = this.props
+     const CellClassProps = {
+       navigator: navigator,
+       HyperLinkClass: HyperLinkClass,
+       HyperLinkPropsFilter: HyperLinkPropsFilter,
+       data: rowData,
+     }
+     return (
+       <MovieCell
+         {...CellClassProps}
+       />
+     )
+   }
+
+   const listViewProps = Object.assign({
+     dataSource: this.state.dataSource,
+     renderRow: renderRow.bind(this),
+     style: styles.listview,
+   }, this.props)
+
+   return (
+     <this.props.ListViewClass
+      {...listViewProps}
      />
-    );
+   )
   }
 
   renderLoadingView() {
@@ -106,20 +124,40 @@ class SampleAppMovies extends Component {
      </View>
     );
   }
+}
 
-  renderMovie(movie: Object) {
+class MovieCell extends Component {
+  render() {
+    const movie = this.props.data;
+    const url = constants.ROUTE_PATHS.MOVIE + "/" + movie.id;
+    const route = {
+      path: constants.ROUTE_PATHS.MOVIE,
+      params: {
+        movieId: movie.id
+      }
+    };
+    const onPress = () => this.props.navigator.push(route);
+    const paramDict = this.props.HyperLinkPropsFilter({
+      to: url,
+      onPress: onPress
+    })
+
     return (
-     <View style={styles.container}>
-       <Image
-         source={{uri: movie.posters.thumbnail}}
-         style={styles.thumbnail}
-       />
-       <View style={styles.rightContainer}>
-         <Text style={styles.title}>{movie.title}</Text>
-         <Text style={styles.year}>{movie.year}</Text>
-       </View>
-     </View>
-    );
+      <View style={styles.container}>
+        <Image
+          source={{uri: movie.posters.thumbnail}}
+          style={styles.thumbnail}
+        />
+        <View style={styles.rightContainer}>
+          <this.props.HyperLinkClass
+          {...paramDict}
+          style={styles.title} >
+            {movie.title}
+          </this.props.HyperLinkClass>
+          <Text style={styles.year}>{movie.year}</Text>
+        </View>
+      </View>
+    )
   }
 }
 
