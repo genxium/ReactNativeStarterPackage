@@ -2,8 +2,8 @@
   "name": "ReactNativeStarterPackage-web",
   "private": true,
   "dependencies": {
-    "react": "^15.1.0",
-    "react-native-web": "^0.0.40",
+    "react": "^15.3.0",
+    "react-native-web": "^0.0.42",
     "react-router": "*",
     "whatwg-fetch": "*"
   },
