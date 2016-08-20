@@ -1,3 +1,5 @@
+![ScreenShot](http://7xljmm.dl1.z0.glb.clouddn.com/ReactNativeStarterPackageScreenshot.png)
+
 This tool doesn't work on Windows (yet).
 
 Project Creation
