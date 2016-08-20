@@ -10,16 +10,14 @@ import React, {
 
 import ReactNative, {
   AppRegistry,
-  ListView,
-  Text,
 } from 'react-native'
 
 import {
   Router,
   Route,
   Redirect,
-  Link,
   IndexRedirect,
+  withRouter,
   browserHistory, // this is a singleton
 } from 'react-router'
 
@@ -36,29 +34,39 @@ class ReactNativeStarterPackage extends Component {
     // Reference 1 https://facebook.github.io/react/docs/transferring-props.html
     // Reference 2 https://github.com/reactjs/react-router/issues/1531
     const dict = {
-      ListViewClass: ReactNative.ListView,
+      ListView: ReactNative.ListView,
       ListViewDataSourceInitValue: new ReactNative.ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-      HyperLinkClass: React.createClass({
+      HyperLink: React.createClass({
+        propTypes: {
+          onPress: React.PropTypes.func.isRequired
+        },
         render: function() {
-          const {to, ...other} = this.props
+          const {onPress, ...other} = this.props;
           return (
-            <Text {...other}>
-              <Link to={this.props.to}>
-                {this.props.children}
-              </Link>
-            </Text>
-          )
+            <button
+            onClick={onPress}>
+              {this.props.children}
+            </button>
+          );
         }
       }),
-      HyperLinkPropsFilter: function (propsIn) {
-        const {to, ...other} = propsIn
-        return {
-          to: to
-        }
+      View: ReactNative.View,
+      Text: ReactNative.Text,
+      Image: ReactNative.Image,
+      StyleSheet: ReactNative.StyleSheet,
+      goToSampleMovieDetail: function(sceneRef: Component, movieId: number) {
+        const newLocation = {
+          pathname: constants.ROUTE_PATHS.MOVIE + '/' + movieId
+        };
+        sceneRef.props.router.push(newLocation);
       },
-    }
+      goBack: function(sceneRef: Component) {
+        console.log('goBack');
+        sceneRef.props.router.goBack();
+      }
+    };
     return React.cloneElement(
       this.props.children,
       dict
@@ -70,8 +78,8 @@ const routes = (
   <Router history={browserHistory}>
     <Route path={constants.ROUTE_PATHS.ROOT} component={ReactNativeStarterPackage}>
       <IndexRedirect to={constants.ROUTE_PATHS.HOME} />
-      <Route path={constants.ROUTE_PATHS.HOME} component={SampleAppMovies} />
-      <Route path={constants.ROUTE_PATHS.MOVIE + constants.ROUTE_PARAMS.MOVIE_ID} component={SampleMovieDetail} />
+      <Route path={constants.ROUTE_PATHS.HOME} component={withRouter(SampleAppMovies)} />
+      <Route path={constants.ROUTE_PATHS.MOVIE + constants.ROUTE_PARAMS.MOVIE_ID} component={withRouter(SampleMovieDetail)} />
     </Route>
   </Router>
 );

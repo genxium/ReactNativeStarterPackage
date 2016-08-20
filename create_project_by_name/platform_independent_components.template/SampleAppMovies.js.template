@@ -14,13 +14,6 @@ import React, {
  Component,
 } from 'react';
 
-import {
- Image,
- StyleSheet,
- Text,
- View
-} from 'react-native';
-
 import constants from './constants';
 
 var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
@@ -57,19 +50,6 @@ class SampleAppMovies extends Component {
     };
   }
 
-  constructor(props: Object) {
-   super(props);
-   this.state = {
-     dataSource: this.props.ListViewDataSourceInitValue,
-     loaded: false,
-   };
-  }
-
-  componentDidMount() {
-    this.fetchData();
-    this.wsSetup();
-  }
-
   fetchData() {
     fetch(REQUEST_URL)
      .then((response) => response.json())
@@ -81,18 +61,71 @@ class SampleAppMovies extends Component {
      });
   }
 
+  constructor(props: Object) {
+   super(props);
+   const {ListViewDataSourceInitValue, StyleSheet, ...other} = props;
+   this.state = {
+     dataSource: ListViewDataSourceInitValue,
+     loaded: false,
+   };
+
+   this.styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF',
+    },
+    rightContainer: {
+      flex: 1,
+    },
+    title: {
+      fontSize: 14,
+      marginBottom: 8,
+      textAlign: 'center',
+    },
+    year: {
+      textAlign: 'center',
+    },
+    thumbnail: {
+      width: 53,
+      height: 81,
+    },
+    listView: {
+      paddingTop: 20,
+      backgroundColor: '#F5FCFF',
+    },
+   });
+  }
+
+  componentDidMount() {
+    this.fetchData();
+    this.wsSetup();
+  }
+
   render() {
-    // should be implemetned by React.Component subclasses
+    const {ListView, View, Text, Image, HyperLink, ...other} = this.props;
+    const styles = this.styles;
+    const sceneRef = this;
     if (!this.state.loaded) {
-     return this.renderLoadingView();
+      return (
+       <View style={styles.container}>
+         <Text>
+           Loading movies...
+         </Text>
+       </View>
+      );
     }
 
     let renderRow = function(rowData, sectionID, rowID, highlightRow) {
-     const {navigator, HyperLinkClass, HyperLinkPropsFilter, ...other} = this.props
      const CellClassProps = {
-       navigator: navigator,
-       HyperLinkClass: HyperLinkClass,
-       HyperLinkPropsFilter: HyperLinkPropsFilter,
+       goToSampleMovieDetailBridge: (movie) => sceneRef.props.goToSampleMovieDetail(sceneRef, movie.id),
+       styles: styles,
+       Text: Text,
+       View: View,
+       Image: Image,
+       HyperLink: HyperLink,
        data: rowData,
      }
      return (
@@ -109,38 +142,17 @@ class SampleAppMovies extends Component {
    }, this.props)
 
    return (
-     <this.props.ListViewClass
+     <ListView
       {...listViewProps}
      />
    )
-  }
-
-  renderLoadingView() {
-    return (
-     <View style={styles.container}>
-       <Text>
-         Loading movies...
-       </Text>
-     </View>
-    );
   }
 }
 
 class MovieCell extends Component {
   render() {
-    const movie = this.props.data;
-    const url = constants.ROUTE_PATHS.MOVIE + "/" + movie.id;
-    const route = {
-      path: constants.ROUTE_PATHS.MOVIE,
-      params: {
-        movieId: movie.id
-      }
-    };
-    const onPress = () => this.props.navigator.push(route);
-    const paramDict = this.props.HyperLinkPropsFilter({
-      to: url,
-      onPress: onPress
-    })
+    const {data, goToSampleMovieDetailBridge, styles, View, Image, Text, HyperLink, ...other} = this.props;
+    const movie = data;
 
     return (
       <View style={styles.container}>
@@ -149,46 +161,19 @@ class MovieCell extends Component {
           style={styles.thumbnail}
         />
         <View style={styles.rightContainer}>
-          <this.props.HyperLinkClass
-          {...paramDict}
+          <HyperLink
+          onPress={ () => goToSampleMovieDetailBridge(movie) }
           style={styles.title} >
             {movie.title}
-          </this.props.HyperLinkClass>
-          <Text style={styles.year}>{movie.year}</Text>
+          </HyperLink>
+          <Text style={styles.year}>
+            {movie.year}
+          </Text>
         </View>
       </View>
     )
   }
 }
-
-var styles = StyleSheet.create({
- container: {
-   flex: 1,
-   flexDirection: 'row',
-   justifyContent: 'center',
-   alignItems: 'center',
-   backgroundColor: '#F5FCFF',
- },
- rightContainer: {
-   flex: 1,
- },
- title: {
-   fontSize: 14,
-   marginBottom: 8,
-   textAlign: 'center',
- },
- year: {
-   textAlign: 'center',
- },
- thumbnail: {
-   width: 53,
-   height: 81,
- },
- listView: {
-   paddingTop: 20,
-   backgroundColor: '#F5FCFF',
- },
-});
 
 exports.SampleAppMovies = SampleAppMovies;
 // `exports` is an alias to `module.exports` for Node.js with ES6

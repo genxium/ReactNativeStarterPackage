@@ -12,22 +12,30 @@ import React, {
 
 class SampleMovieDetail extends Component {
 
- render() {
-   const url = constants.ROUTE_PATHS.ROOT;
-   const onPress = () => this.props.navigator.pop();
-   const paramDict = this.props.HyperLinkPropsFilter({
-     to: url,
-     onPress: onPress
-   })
-   return (
-     <this.props.HyperLinkClass
-      {...paramDict}
-      style={{paddingTop: 64, paddingLeft: 32}}
-     >
-      {this.props.params.movieId}
-     </this.props.HyperLinkClass>
-   );
- }
+  constructor(props) {
+    super(props);
+    const {StyleSheet, ...other} = props;
+    this.styles = StyleSheet.create({
+      title: {
+        paddingTop: 64,
+        paddingLeft: 32
+      }
+    });
+  }
+
+  render() {
+    const {params, goBack, HyperLink, ...other} = this.props;
+    const sceneRef = this;
+    const styles = this.styles;
+    return (
+      <HyperLink
+      onPress={ () => goBack(sceneRef) }
+      style={styles.title}
+      >
+        {params.movieId}
+      </HyperLink>
+    );
+  }
 }
 
 exports.SampleMovieDetail = SampleMovieDetail;
