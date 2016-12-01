@@ -9,7 +9,7 @@ fi
 
 # If using Ubuntu please install node components by https://github.com/genxium/Ubuntu14InitScripts/tree/master/backend/node
 # If using OS X please download the v6+ installer from the official site https://nodejs.org/en/
-sudo npm install -g webpack
+sudo npm install -g webpack@1.13.3
 sudo npm install -g react-native-cli
 
 basedir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )

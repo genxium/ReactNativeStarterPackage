@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# remember to start the node server `api_daemon.js` beforehand
-
-react-native run-android
-
-# adb reverse <local, i.e. the Android device> <remote, i.e. the development host machine>, type `adb` on shell to read all the command options 
-adb reverse --remove tcp:9090
-adb reverse --no-rebind tcp:9090 tcp:9090

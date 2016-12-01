@@ -1,12 +1,5 @@
-var path = require('path');
-var webModuleAbsPath = path.resolve('./web/node_modules');
-
-const babelPresets = [
-	require(webModuleAbsPath + '/babel-preset-es2015'),
-	require(webModuleAbsPath + '/babel-preset-react'),
-	require(webModuleAbsPath + '/babel-preset-react-native'),
-	require(webModuleAbsPath + '/babel-preset-stage-0')
-];
+const path = require('path');
+const webModuleAbsPath = path.resolve('./web/node_modules');
 
 module.exports = {
 	resolve: {
@@ -14,26 +7,33 @@ module.exports = {
 			webModuleAbsPath
 		],
 		alias: {
-		       'react-native': 'react-native-web'
+			'react-native': 'react-native-web'
 		}
 	},
 	resolveLoader: { 
 		root: webModuleAbsPath // this helps to resolve loader names, e.g. 'babel-loader'
 	},
-	entry: [
-		webModuleAbsPath + '/../../index.web.js'
-	],
+	entry: {
+		app: webModuleAbsPath + '/../../index.web.js'
+	},
 	module: {
 		loaders: [
 			{
 				test: /\.jsx?$/,
-				loader: 'babel-loader',
-				presets: babelPresets 
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+          presets: [
+            require.resolve(webModuleAbsPath + '/babel-preset-react'),
+            require.resolve(webModuleAbsPath + '/babel-preset-es2015'),
+            require.resolve(webModuleAbsPath + '/babel-preset-stage-0'),
+          ],
+        }
 			}
 		]
 	},
 	output: {
 		path: './web/bin',
-		filename: 'app.bundle.js'
+    filename: '[name].bundle.js',
 	}
 };

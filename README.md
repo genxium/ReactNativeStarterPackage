@@ -41,7 +41,9 @@ shell@proj-root/web> npm install
 shell@proj-root> webpack
 shell@proj-root> ./start_api_daemon
 ```
-Visit port 9090 if successfully started.
+Visit port 9090 on the serving machine if successfully started.
+
+Please refer to [ExpressAndReactDemo](https://github.com/genxium/ExpressAndReactDemo) for more information about webpack configuration.
 
 Reminders
 --
