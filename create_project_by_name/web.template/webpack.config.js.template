@@ -1,5 +1,5 @@
-const path = require('path');
-const webModuleAbsPath = path.resolve('./web/node_modules');
+const baseAbsPath = __dirname + '/';
+const webModuleAbsPath = baseAbsPath + './node_modules';  
 
 module.exports = {
 	resolve: {
@@ -14,7 +14,7 @@ module.exports = {
 		root: webModuleAbsPath // this helps to resolve loader names, e.g. 'babel-loader'
 	},
 	entry: {
-		app: webModuleAbsPath + '/../../index.web.js'
+		app: baseAbsPath + './../index.web.js'
 	},
 	module: {
 		loaders: [
@@ -33,7 +33,7 @@ module.exports = {
 		]
 	},
 	output: {
-		path: './web/bin',
+		path: baseAbsPath + './bin',
     filename: '[name].bundle.js',
 	}
 };
