@@ -79,7 +79,7 @@ Web
 ```
 shell@proj-root/web> npm install
 shell@proj-root/web> npm run build 
-shell@proj-root> ./start_api_daemon
+shell@proj-root> node api_daemon.js 
 ```
 
 or 
@@ -87,7 +87,7 @@ or
 ```
 shell@proj-root/web> npm install
 shell@proj-root/web> npm run build-watch
-shell@proj-root> ./start_api_daemon
+shell@proj-root> node api_daemon.js 
 ```
 
 to enable webpack watcher for file updates.
