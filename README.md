@@ -18,22 +18,24 @@ After the downloading is finished, go to the `$HOME/MyProject` directory and run
 iOS
 --
 ```bash
-shell@proj-root> react-native run-ios
+shell@$HOME/MyProject> react-native run-ios
 ```
 or
+
 ```bash
-shell@proj-root> open ./ios/ReactNativeStarterPackage.xcodeproj
+shell@$HOME/MyProject> open ./ios/ReactNativeStarterPackage.xcodeproj
 ```
-Please note that `Info.plist -> App Transport Security Settings -> Allow Arbitrary Loads` has been set to `Yes` for this project. However, the [init script under <proj-root>/create_project_by_name](https://github.com/genxium/ReactNativeStarterPackage/blob/master/create_project_by_name/init) does NOT modify the default ATS settings thus you might have to change it manually according to specific demands.
+
+Please note that `Info.plist -> App Transport Security Settings -> Allow Arbitrary Loads` of `$HOME/MyProject/ios` does NOT modify the default ATS settings thus you might have to change it manually according to specific demands.
 
 
 Android (need `$ANDROID_HOME/tools` added to `$PATH`)
 --
 
 ```
-shell@proj-root> android avd
+shell> android avd
 ...(launch an Android emulator)...
-shell@proj-root> ./run_android_with_localhost_proxying
+shell@$HOME/MyProject> ./run_android_with_localhost_proxying
 ```
 
 Please refer to the [official document](https://facebook.github.io/react-native/docs/getting-started.html#content) or [my 印象笔记 record (access permission needed)](https://app.yinxiang.com/shard/s61/nl/13267014/54814fe0-c4e2-4e1a-b8e0-d0e963fbcf12?title=Installing%20React-Native%20on%20Ubuntu14.04%20for%20Android%20Dev%20in%20China) for information about react-native setup of Android development.
@@ -47,13 +49,13 @@ After the project, e.g. `MyProject` is created at `$HOME/MyProject`, the default
 By  
 
 ```
-shell@proj-root> ./run_android_with_localhost_proxying
+shell@$HOME/MyProject> ./run_android_with_localhost_proxying
 ``` 
 
 one actually calls 
 
 ```
-shell@proj-root> react-native run-android 
+shell@$HOME/MyProject> react-native run-android 
 ```
 
 which in turn calls `$HOME/MyProject/android/gradlew[.bat]` to build the Android sub-project. The distribution of gradle to use is then determined by the config file at `$HOME/MyProject/android/gradle/wrapper/gradle-wrapper.properties` which reads like the following. 
@@ -77,17 +79,17 @@ to use a local distribution `$HOME/MyProject/android/gradle/wrapper/gradle-2.14.
 Web
 --
 ```
-shell@proj-root/web> npm install
-shell@proj-root/web> npm run build 
-shell@proj-root> node api_daemon.js 
+shell@$HOME/MyProject/web> npm install
+shell@$HOME/MyProject/web> npm run build 
+shell@$HOME/MyProject> node api_daemon.js 
 ```
 
 or 
 
 ```
-shell@proj-root/web> npm install
-shell@proj-root/web> npm run build-watch
-shell@proj-root> node api_daemon.js 
+shell@$HOME/MyProject/web> npm install
+shell@$HOME/MyProject/web> npm run build-watch
+shell@$HOME/MyProject> node api_daemon.js 
 ```
 
 to enable webpack watcher for file updates.
@@ -100,7 +102,7 @@ Reminders
 --
 Use
 ```
-shell@proj-root> ./node_modules/react-native/packager/packager.sh start --resetCache
+shell@$HOME/MyProject> ./node_modules/react-native/packager/packager.sh start --resetCache
 ```
 to start the packager with cache cleaned if any weird errors show up and you're sure that it's a cache relevant problem.
 
